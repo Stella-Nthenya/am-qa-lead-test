@@ -1,19 +1,30 @@
 # Thrive Themes - QA Team Lead Code Challenge
-This project is a simple web application that suggests tags based on user input, with a focus on detecting keywords like **"WordPress"** and **"Marketing"**. The application is tested using [Codeception](https://codeception.com/) for acceptance testing.
 
-## Feature Overview
+This project is a simple web application that suggests tags based on user input, with a focus on detecting keywords like **"WordPress"** and **"Marketing"**. The application is tested using [Codeception](https://codeception.com/) for acceptance testing and [Postman](https://www.postman.com/) for API validation.
+
+---
+
+## 🌟 Feature Overview
 - Detects **"WordPress"** and **"Marketing"** keywords in user input (case-insensitive).
 - Suggests relevant tags based on detected keywords.
-- Prioritizes **WordPress** tags if both keywords are present.
+- If both keywords are present, all matching tags are shown.
+- If no relevant keywords are found, a fallback message is displayed.
 
-## Fix Summary ✅ 
-This project was built from the provided HTML at [https://thrivethemes.com/challenges/qa/](https://thrivethemes.com/challenges/qa/)
+---
 
-**Bug Fixed**: A variable naming mismatch (`contentForWordPress` vs `contentForWordpress`) caused tag detection to break.  
-✅ Fix: Renamed all instances to use consistent casing (`contentForWordpress`)  
-✅ Tested locally — tag suggestion logic now works as expected.
+## 📦 Source, Customization, and Bug Fix
 
-## Test Coverage (Automated)
+This project was built using the HTML provided at [https://thrivethemes.com/challenges/qa/](https://thrivethemes.com/challenges/qa/).  
+I used the provided HTML as a base and made the following changes:
+
+- ✅ **Bug Fix**: Corrected a naming inconsistency between `contentForWordPress` and `contentForWordpress` that caused tag detection to fail.
+- ✅ **Mock API**: Created a backend endpoint `api/smart-tags.php` to simulate AI-powered tag suggestions for use with Postman/Newman.
+- ✅ **API Collection**: Developed a Postman collection to automate and validate the API logic.
+
+---
+
+## ✅ Test Coverage
+
 | TC ID | Title                                | Category         |
 |-------|--------------------------------------|------------------|
 | TC1   | WordPress Keyword Detection          | ✅ Positive       |
@@ -24,6 +35,7 @@ This project was built from the provided HTML at [https://thrivethemes.com/chall
 | TC6   | Keywords with Special Characters     | ⚠️ Boundary       |
 | TC7   | Both Keywords Present (WP Priority)  | 🔁 Logic Priority |
 
+---
 
 ## ⚙️ Requirements
 - PHP 8.1 or higher
@@ -31,10 +43,13 @@ This project was built from the provided HTML at [https://thrivethemes.com/chall
 - Google Chrome
 - ChromeDriver (matching your Chrome version)
 
-## Installation
+---
+
+## 🛠️ Installation
+
 1. Clone the repository:
    ```bash
-   git clone [This Repo](git@github.com:Stella-Nthenya/am-qa-lead-test.git)
+   git clone git@github.com:Stella-Nthenya/am-qa-lead-test.git
    cd am-qa-lead-test
    ```
 
@@ -43,49 +58,102 @@ This project was built from the provided HTML at [https://thrivethemes.com/chall
    composer install
    ```
 
+---
+
 ## 🚀 Running the Application
-Serve the `index.html` using PHP’s built-in server:
+
+Serve the HTML page using PHP’s built-in server:
+
 ```bash
 php -S localhost:8000
 ```
-Then open your browser at:
+
+Then visit:
 ```
 http://localhost:8000/index.html
 ```
 
-## Running Automated Tests
+---
 
-1. Start the PHP server (to serve the test page):
+## 🔎 Running Automated Acceptance Tests
+
+1. Start the server:
    ```bash
    php -S localhost:8000
    ```
 
-2. In a separate terminal, start ChromeDriver:
+2. Start ChromeDriver in another terminal:
    ```bash
    chromedriver
    ```
-   You should see output like:
+   You should see:
    ```
    ChromeDriver was started successfully on port 9515
    ```
 
-3. Run the Codeception acceptance tests:
+3. Run the tests:
    ```bash
    vendor/bin/codecept run acceptance
    ```
 
-Note: Make sure your Chrome browser is installed and the ChromeDriver version matches your browser version. You can download it from https://chromedriver.chromium.org/downloads.
+---
 
+## 🧪 API Testing with Postman
 
-## 🧹 Clean Repo Notes
-This repository excludes the following auto-generated files:
-- `/vendor/`
-- `/node_modules/`
-- `/tests/_output/`
+This project includes a Postman collection to test the `smart-tags.php` API endpoint.
 
-Use `composer install` after cloning to regenerate dependencies.
+### 📁 Collection File
+- `Smart Tags Tests API collection.postman_collection.json`
 
-## Author
-- Created by Stella Nthenya
-- QA Engineer | Thrive Themes Code Challenge
-- Tested using **Codeception** with WebDriver (Chrome + ChromeDriver)
+### ▶️ How to Use
+1. Open [Postman](https://www.postman.com/).
+2. Click **Import**, and select the collection JSON file.
+3. You will find 3 test cases:
+   - ✅ WordPress keyword
+   - ✅ Marketing keyword
+   - ❌ Empty input (negative case)
+4. Make sure your server is running at `http://localhost:8000/api/smart-tags`.
+
+---
+
+### 🧪 Run with Newman (CLI)
+
+Install [Newman](https://www.npmjs.com/package/newman):
+
+```bash
+npm install -g newman
+```
+
+Run the collection:
+
+```bash
+newman run "Smart Tags Tests API collection.postman_collection.json"
+```
+
+Each request includes assertions to validate:
+- HTTP status is `200 OK`
+- `suggested_tags` array is returned
+- Tags match expected results or show the correct error
+
+---
+
+## 📂 File Structure
+
+```
+.
+├── api/
+│   └── smart-tags.php                # Mock API endpoint
+├── index.html                        # Frontend UI test page
+├── tests/
+│   ├── Acceptance/
+│   │   └── SmartTagCest.php          # Codeception UI tests
+├── Smart Tags Tests API collection.postman_collection.json
+├── README.md
+```
+
+---
+
+## 👤 Author
+Created by **Stella Nthenya**  
+QA Engineer | Thrive Themes Code Challenge  
+Built with ❤️ using **Codeception** + **Postman**

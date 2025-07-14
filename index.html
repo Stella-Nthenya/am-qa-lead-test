@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Tag Suggester - Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        textarea {
+            width: 95%;
+            min-height: 100px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        h3 {
+            margin-top: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+        #suggestedTagsOutput {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px dashed #ccc;
+            min-height: 40px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+        }
+        .tag {
+            display: inline-block;
+            background-color: #e0e0e0;
+            color: #333;
+            padding: 5px 10px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            border-radius: 15px; 
+            font-size: 0.9em;
+        }
+        .error-message {
+            color: #D8000C; 
+            background-color: #FFD2D2;
+            padding: 8px;
+            border-radius: 4px;
+        }
+    </style> 
+</head> 
+<body>
+
+    <div class="container">
+        <h1>Smart Tag Feature - Test Page</h1>
+
+        <label for="postContentInput">Enter your post content below:</label>
+        <textarea id="postContentInput" placeholder="Type or paste your blog post content here..."></textarea>
+
+        <button id="suggestTagsButton">Suggest Tags</button>
+
+        <h3>Suggested Tags:</h3>
+        <div id="suggestedTagsOutput">
+            </div>
+    </div>
+
+    <script>
+        document.getElementById('suggestTagsButton').addEventListener('click', function() {
+            const rawContent = document.getElementById('postContentInput').value;
+            const outputDiv = document.getElementById('suggestedTagsOutput');
+            let suggestions = [];
+            let message = '';
+            const contentForWordPress = rawContent.toLowerCase(); 
+            const contentForMarketing = rawContent.toLowerCase();
+            const hasWordPress = contentForWordPress.includes("wordpress");
+            const hasMarketing = contentForMarketing.includes("marketing"); 
+
+            if (hasWordPress && hasMarketing) {
+                suggestions = ["WordPress", "Themes", "Plugins"]; 
+            } else if (hasWordPress) {
+                suggestions = ["WordPress", "Themes", "Plugins"];
+            } else if (hasMarketing) {
+                suggestions = ["Marketing", "SEO", "Content"];
+            }
+
+            if (suggestions.length > 0) {
+                message = suggestions.map(tag => `<span class="tag">${tag}</span>`).join(' ');
+            } else {
+                if (rawContent.trim() === "") {
+                    message = "<span class='error-message'>Input is empty. Please type something.</span>"; 
+                } else {
+                    message = "No specific tags found for your content.";
+                }
+            }
+            outputDiv.innerHTML = message;
+        });
+    </script>
+
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"95e341663f4e6e7d","serverTiming":{"name":{"cfExtPri":true,"cfEdge":true,"cfOrigin":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}},"version":"2025.6.2","token":"7cd62d21f4e74421821b0b01628c4e12"}' crossorigin="anonymous"></script>
+</body>
+</html>

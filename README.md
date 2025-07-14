@@ -1,7 +1,7 @@
-# Smart Tag Suggestion App
+# Thrive Themes - QA Team Lead Code Challenge
 This project is a simple web application that suggests tags based on user input, with a focus on detecting keywords like **"WordPress"** and **"Marketing"**. The application is tested using [Codeception](https://codeception.com/) for acceptance testing.
 
-## Features
+## Feature Overview
 - Detects **"WordPress"** and **"Marketing"** keywords in user input (case-insensitive).
 - Suggests relevant tags based on detected keywords.
 - Prioritizes **WordPress** tags if both keywords are present.

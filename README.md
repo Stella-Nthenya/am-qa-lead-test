@@ -74,7 +74,7 @@ http://localhost:8000/index.html
    vendor/bin/codecept run acceptance
    ```
 
-✅ Make sure your Chrome browser is installed and the ChromeDriver version matches your browser version. You can download it from https://chromedriver.chromium.org/downloads.
+Note: Make sure your Chrome browser is installed and the ChromeDriver version matches your browser version. You can download it from https://chromedriver.chromium.org/downloads.
 
 
 ## 🧹 Clean Repo Notes
@@ -86,5 +86,6 @@ This repository excludes the following auto-generated files:
 Use `composer install` after cloning to regenerate dependencies.
 
 ## Author
-Created as part of a QA Code Challenge  
-Tested using **Codeception** with WebDriver (Chrome + ChromeDriver)
+- Created by Stella Nthenya
+- QA Engineer | Thrive Themes Code Challenge
+- Tested using **Codeception** with WebDriver (Chrome + ChromeDriver)

@@ -1,0 +1,20 @@
+{
+    "name": "stellanthenya/amqaleadtest",
+    "autoload": {
+        "psr-4": {
+            "Stellanthenya\\Amqaleadtest\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "stella-nthenya",
+            "email": "stellaalogi@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "codeception/codeception": "^5.3",
+        "codeception/module-phpbrowser": "*",
+        "codeception/module-asserts": "*",
+        "codeception/module-webdriver": "^4.0"
+    }
+}

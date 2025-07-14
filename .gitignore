@@ -1,0 +1,17 @@
+/vendor/
+
+/tests/_output/
+/tests/Support/_generated/
+/tests/Support/Data/
+
+*.log
+*.cache
+*.lock
+*.tmp
+.DS_Store
+.idea/
+.vscode/
+
+# OS-specfic
+Thumbs.db
+ehthumbs.db

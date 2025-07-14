@@ -1,0 +1,135 @@
+{
+	"info": {
+		"_postman_id": "6bc40258-9091-416f-be14-486f4cbec0c6",
+		"name": "Smart Tags Tests API collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15057704",
+		"_collection_link": "https://testing-4391.postman.co/workspace/testing-Workspace~6372a637-bdba-4e10-81dc-a3d937386fa1/collection/15057704-6bc40258-9091-416f-be14-486f4cbec0c6?action=share&source=collection_link&creator=15057704"
+	},
+	"item": [
+		{
+			"name": "Detect WordPress Keyword",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Contains 'suggested_tags'\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property(\"suggested_tags\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"post_content\": \"I love using wordpress for my website\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/smart-tags.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"smart-tags.php"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST http://localhost:8000/api/smart-tags.php \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"post_content\": \"I use WordPress for marketing\"}'"
+			},
+			"response": []
+		},
+		{
+			"name": "Detect Marketing Keyword case-sensitive",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"post_content\": \"MARKETING campaigns need good planning\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/smart-tags.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"smart-tags.php"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST http://localhost:8000/api/smart-tags.php \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"post_content\": \"I use WordPress for marketing\"}'"
+			},
+			"response": []
+		},
+		{
+			"name": "Detect Both Keywords",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"post_content\": \"Using wordpress for marketing campaigns\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/smart-tags.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"smart-tags.php"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST http://localhost:8000/api/smart-tags.php \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"post_content\": \"I use WordPress for marketing\"}'"
+			},
+			"response": []
+		}
+	]
+}
